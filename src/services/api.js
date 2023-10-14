@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 const api = axios.create({
-    baseURL: 'http://localhost:3333/api'
+    baseURL: 'https://um-clipe-uma-musica-backend-ettyczadh.vercel.app/api'
 })
 
 export default api;

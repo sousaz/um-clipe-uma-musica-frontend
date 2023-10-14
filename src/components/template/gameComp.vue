@@ -8,15 +8,15 @@
     ></progress>
     <audio ref="audioElement" :src="clip[currentIndex].url"></audio>
     <div v-if="answerStatus === null" class="player">
-      <video :src="clip[currentIndex].url" autoplay muted loop></video>
+      <video :src="clip[currentIndex].url" autoplay muted="true" loop></video>
     </div>
     <div class="answer-feedback" v-else>
       <p v-if="answerStatus" :style="{backgroundColor: collorText}">Você acertou a música!</p>
       <p v-else :style="{backgroundColor: collorText}">Você errou a música.</p>
     </div>
     <div class="btn-group">
-      <buttonComp label="Dica" hint @click="getHint()" />
-      <buttonComp label="Confirmar" confirm @click="confirm()" />
+      <buttonComp label="Dica" :disabled="disabled" hint @click="getHint()" />
+      <buttonComp label="Confirmar" :disabled="disabled" confirm @click="confirm()" />
       <buttonComp label="Próximo" next @click="nextClip()" />
     </div>
     <div class="input">
@@ -41,7 +41,7 @@
       </ul>
     </div>
   </div>
-  <div v-else class="game">
+  <div v-else-if="endGame" class="game">
     <p class="msg-final win" v-if="currentPontuation >= 30">
       Parabéns pelo seus {{ currentPontuation }} pontos.
     </p>
